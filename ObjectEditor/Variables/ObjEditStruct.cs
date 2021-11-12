@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObjEditStruct
 {
@@ -8,6 +9,7 @@ public class ObjEditStruct
     //Editor Button bools
     public static bool groupEnabled1 = false;
     public static bool groupEnabled2 = false;
+    public static bool groupEnabled3 = false;
 
     //Object
     public static GameObject obj;
@@ -29,6 +31,12 @@ public class ObjEditStruct
     //Object Renderer Types
     public static MeshRenderer renderer1;
     public static SkinnedMeshRenderer renderer2;
+
+    //Missing Scripts remover Vars
+    public static int _goCount;
+    public static int _componentsCount;
+    public static int _missingCount;
+    public static bool _bHaveRun;
 
     //This script is made by PoH#4626
 }

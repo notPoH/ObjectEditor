@@ -11,7 +11,7 @@ using System.Reflection;
 [ExecuteInEditMode]
 public class ObjectEditor : MonoBehaviour
 {
-    private void Update()
+    private void Start()
     {
         ObjEditStruct.obj = gameObject;
         ObjEditStruct.layers = getlay();
