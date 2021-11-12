@@ -29,16 +29,24 @@ public class SettingsWindow : EditorWindow
         GUILayout.Space(5);
         ObjEditStruct.groupEnabled1 = EditorGUILayout.BeginToggleGroup("Layers", ObjEditStruct.groupEnabled1);
         EditorPrefs.SetBool("ObjectEditorGroup1Enabled", ObjEditStruct.groupEnabled1);
-        string tags = File.ReadAllText(Directory.GetCurrentDirectory() + @"\Assets\ObjectEditor\Manager\TagManager.asset");
-        if (GUILayout.Button("Generate Layers"))
+        if(!File.Exists(Directory.GetCurrentDirectory() + @"\Assets\ObjectEditor\Manager\TagManager.asset"))
         {
-            File.WriteAllText(Directory.GetCurrentDirectory() + @"\ProjectSettings\TagManager.asset", tags);
-            AssetDatabase.Refresh();
+            EditorGUILayout.EndToggleGroup();
+            GUILayout.Label("Please add a TagManager.asset in \"" + Directory.GetCurrentDirectory() + @"\Assets\ObjectEditor\Manager\" + "\"");
         }
-        EditorGUILayout.EndToggleGroup();
-        if (tags == File.ReadAllText(Directory.GetCurrentDirectory() + @"\ProjectSettings\TagManager.asset"))
+        if(File.Exists(Directory.GetCurrentDirectory() + @"\Assets\ObjectEditor\Manager\TagManager.asset"))
         {
-            GUILayout.Label("Already generated all layers!");
+            string tags = File.ReadAllText(Directory.GetCurrentDirectory() + @"\Assets\ObjectEditor\Manager\TagManager.asset");
+            if (GUILayout.Button("Generate Layers"))
+            {
+                File.WriteAllText(Directory.GetCurrentDirectory() + @"\ProjectSettings\TagManager.asset", tags);
+                AssetDatabase.Refresh();
+            }
+            EditorGUILayout.EndToggleGroup();
+            if (tags == File.ReadAllText(Directory.GetCurrentDirectory() + @"\ProjectSettings\TagManager.asset"))
+            {
+                GUILayout.Label("Already generated all layers!");
+            }
         }
 
         GUILayout.Space(5);
